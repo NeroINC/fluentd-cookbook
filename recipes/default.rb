@@ -16,16 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-group 'fluent' do
-  group_name 'fluent'
-  gid        403
-  action     [:create]
-end
 
 user 'fluent' do
   comment  'fluent'
   uid      403
-  group    'fluent'
+  group    'root'
   home     '/var/run/fluent'
   shell    '/bin/false'
   password nil
@@ -37,7 +32,7 @@ end
 %w{ /etc/fluent/ /etc/fluent/config.d/ /var/log/fluent/ }.each do |dir|
   directory dir do
     owner  'fluent'
-    group  'fluent'
+    group  'root'
     mode   '0755'
     action :create
   end
