@@ -30,7 +30,7 @@ test -f /usr/local/rvm/environments/default && { source /usr/local/rvm/environme
 
 PIDFILE=${PIDFILE-/var/run/fluent/$prog.pid}
 DAEMON_ARGS=${DAEMON_ARGS---user fluent}
-FLUENTD_ARGS="${FLUENTD_ARGS---group fluent --log /var/log/fluent/fluent.log}"
+FLUENTD_ARGS="${FLUENTD_ARGS---group root --log /var/log/fluent/fluent.log}"
 
 if [ -n "${PIDFILE}" ]; then
 	mkdir -p $(dirname ${PIDFILE})
@@ -78,7 +78,7 @@ reload() {
 }
 
 configtest() {
-	/usr/local/bin/fluentd --user fluent --group fluent --dry-run -q
+	/usr/local/bin/fluentd --user fluent --group root --dry-run -q
 }
 
 case "$1" in
