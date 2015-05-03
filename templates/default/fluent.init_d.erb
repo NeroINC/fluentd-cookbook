@@ -43,7 +43,7 @@ RETVAL=0
 
 start() {
 	echo -n "Starting $name: "
-	daemon --pidfile=$PIDFILE $DAEMON_ARGS fluentd "$FLUENTD_ARGS"
+	daemon --pidfile=$PIDFILE $DAEMON_ARGS /usr/local/bin/fluentd "$FLUENTD_ARGS"
 	RETVAL=$?
 	echo
 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
@@ -78,7 +78,7 @@ reload() {
 }
 
 configtest() {
-	fluentd --user fluent --group fluent --dry-run -q
+	/usr/local/bin/fluentd --user fluent --group fluent --dry-run -q
 }
 
 case "$1" in
